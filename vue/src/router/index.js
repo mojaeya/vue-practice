@@ -16,6 +16,46 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/databinding/string',
+      name: 'DataBindingStringView',
+      component: () => import('../views/1_databinding/DataBindingStringView.vue')
+    },
+    {
+      path: '/databinding/html',
+      name: 'DataBindingHtmlView',
+      component: () => import('../views/1_databinding/DataBindingHtmlView.vue')
+    },
+    {
+      path: '/databinding/input',
+      name: 'DataBindingInputView',
+      component: () => import('../views/1_databinding/DataBindingInputView.vue')
+    },
+    {
+      path: '/databinding/select',
+      name: 'DataBindingSelectView',
+      component: () => import('../views/1_databinding/DataBindingSelectView.vue')
+    },
+    {
+      path: '/databinding/check',
+      name: 'DataBindingCheckboxView',
+      component: () => import('../views/1_databinding/DataBindingCheckboxView.vue')
+    },
+    {
+      path: '/event/click',
+      name: 'EventClickView',
+      component: () => import('../views/2_event/EventClickView.vue')
+    },
+    {
+      path: '/event/change',
+      name: 'EventChangeView',
+      component: () => import('../views/2_event/EventChangeView.vue')
+    },
+    {
+      path: '/event/key',
+      name: 'EventKeyView',
+      component: () => import('../views/2_event/EventKeyView.vue')
     }
   ]
 })
