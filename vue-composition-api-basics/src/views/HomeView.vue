@@ -15,19 +15,37 @@
 
     <div class="edit">
       <h4>Edit counter title:</h4>
-      <input v-model="counterData.title" type="text" />
+      <input v-model="counterData.title" type="text" v-autofocus />
     </div>
   </div>
 </template>
 
 <script setup>
 // import { ref } from "vue";
-import { reactive, computed, watch } from "vue";
+import {
+  reactive,
+  computed,
+  watch,
+  // onBeforeUpdate,
+  // onUpdated,
+  // onBeforeMount,
+  onMounted,
+  // onBeforeUnmount,
+  // onUnmounted,
+  // onActivated,
+  // onDeactivated,
+} from "vue";
+
+import { vAutofocus } from "@/directives/vAutofocus";
 
 const appTilte = "My Amazing Counter App";
 
 // const counter = ref(0),
 //   counterTitle = ref("My Counter");
+
+onMounted(() => {
+  console.log("Do stuff related to App Title");
+});
 
 const counterData = reactive({
   count: 0,
@@ -60,6 +78,10 @@ const decreaseCoutner = (amount) => {
   // counterData.count--;
   counterData.count -= amount;
 };
+
+onMounted(() => {
+  console.log("Do stuff related to Counter");
+});
 </script>
 
 <!-- <script>
@@ -80,6 +102,10 @@ export default {
       if (newCount == 20) alert("asdasd");
     },
   },
+  mounted() {
+    // 옵션 api 사용하면 각 유형에 하나의 후크만 추가 가능
+  },
+  unmounted() {},
 };
 </script> -->
 
