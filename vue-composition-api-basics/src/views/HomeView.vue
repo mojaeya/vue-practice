@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTilte }}</h2>
+    <h2 ref="appTitleRef">{{ appTilte }}</h2>
     <!-- <h3>{{ counterTitle }}:</h3> -->
     <h3>{{ counterData.title }}:</h3>
     <div>
@@ -26,7 +26,8 @@ import {
   reactive,
   computed,
   watch,
-  // onBeforeUpdate,
+  ref,
+  nextTick,
   // onUpdated,
   // onBeforeMount,
   onMounted,
@@ -35,53 +36,23 @@ import {
   // onActivated,
   // onDeactivated,
 } from "vue";
-
+import { useCounter } from "@/composables/useCounter";
 import { vAutofocus } from "@/directives/vAutofocus";
 
 const appTilte = "My Amazing Counter App";
+
+// this.$refs.appTilteRef -> option api
+const appTitleRef = ref(null);
 
 // const counter = ref(0),
 //   counterTitle = ref("My Counter");
 
 onMounted(() => {
-  console.log("Do stuff related to App Title");
+  console.log(`The app title is ${appTitleRef.value.offsetWidth} px wide!`);
 });
 
-const counterData = reactive({
-  count: 0,
-  title: "My Counter",
-});
-
-watch(
-  () => counterData.count,
-  (newCount) => {
-    if (newCount === 20) {
-      alert("way to go! You made it to 20!!");
-    }
-  }
-);
-
-const oddOrEven = computed(() => {
-  if (counterData.count % 2 === 0) return "even";
-  return "odd";
-});
-
-const increaseCounter = (amount, e) => {
-  // counter.value++;
-  // counterData.count++;
-  console.log(e);
-  counterData.count += amount;
-};
-
-const decreaseCoutner = (amount) => {
-  // counter.value--;
-  // counterData.count--;
-  counterData.count -= amount;
-};
-
-onMounted(() => {
-  console.log("Do stuff related to Counter");
-});
+const { counterData, increaseCounter, oddOrEven, decreaseCoutner } =
+  useCounter();
 </script>
 
 <!-- <script>
